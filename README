@@ -1,0 +1,62 @@
+
+README - Documentation
+Nicholas LaRosa
+CSE 30264, Project 1
+
+Unpack TAR:	tar xvfz Project1.tgz
+
+Compile server:
+
+		cd server
+		make
+		
+Compile client:
+
+		cd client
+		make
+
+Run server:
+		
+		cd server
+		myftpd <Port_Number>
+
+Run client:
+		cd client
+		myftp <IP_address> or <Host_name> <Port_number> <File_to_request_from_server_directory>
+
+NOTE: 		Extra credit attempted, connections to arrive only from the 129.74.* address range, 
+		localhost (127.*), or the private network (192.168.*)
+
+Performance Metrics
+		________________________________________________________________________
+				
+					Small File		Large File			
+		________________________________________________________________________
+
+		Reference Server 	(1) 00.000024 second	(1) 00.746666 second
+					(2) 00.000024 second	(2) 00.739024 second
+					(3) 00.000024 second	(3) 00.758243 second
+					(4) 00.000025 second	(4) 00.761280 second
+					(5) 00.000026 second	(5) 00.769693 second
+
+					Avg: 00.0000246 second	Avg: 00.7549812 second
+					StDev: 8e-7 second	StDev: 00.010868 second
+		________________________________________________________________________
+
+		My Server		(1) 00.000022 second	(1) 00.613728 second
+					(2) 00.000020 second	(2) 00.589093 second
+					(3) 00.000024 second	(3) 00.616846 second
+					(4) 00.000021 second	(4) 00.597811 second
+					(5) 00.000023 second	(5) 00.590772 second
+				
+					Avg: 00.000022 second	Avg: 00.601656 second
+					StDev: 1.414e-6 second 	StDev: 00.01156 second
+		________________________________________________________________________
+
+		As we can see from these performance metrics, my server transferred 
+		the small and big files faster than did the reference server. One
+		reason for this may be that the reference server is getting requests from
+		multiple clients, while my server is not known to other users. Additionally,
+		the reference server may use a smaller buffer size during the file transfer,
+		which would require this server to call more data write() function instances. 
+
